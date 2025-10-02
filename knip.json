@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "entry": ["src/main.tsx", "src/vite-env.d.ts"],
+  "project": ["src/**/*.{js,jsx,ts,tsx}"],
+  "ignore": ["dist/**", "styled-system/**", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+  "ignoreDependencies": [],
+  "ignoreExportsUsedInFile": true,
+  "vite": {
+    "config": ["vite.config.ts"]
+  }
+}
