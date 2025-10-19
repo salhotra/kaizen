@@ -31,10 +31,9 @@
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": ["src", ".storybook"]
 }
