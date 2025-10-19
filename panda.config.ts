@@ -15,7 +15,13 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        colors: {
+          record: { value: '#DC2626' },
+        },
+      },
+    },
   },
 
   // The output directory for your css system
