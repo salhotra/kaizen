@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { css } from '../../../styled-system/css';
 
 const SIZES = {
   sm: 24,
@@ -40,27 +39,19 @@ export function RecordButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={css({
+      className="p-0 border-white bg-transparent rounded-full flex items-center justify-center transition-opacity duration-200 ease-in-out"
+      style={{
         width: `${outerSize}px`,
         height: `${outerSize}px`,
-        padding: 0,
-        border: `${ringWidth}px solid white`,
-        borderRadius: '50%',
-        backgroundColor: 'transparent',
+        borderWidth: `${ringWidth}px`,
         cursor: disabled ? 'not-allowed' : 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         opacity: disabled ? 0.5 : 1,
-        transition: 'opacity 0.2s ease',
-      })}
+      }}
       whileTap={disabled ? undefined : { scale: 0.95 }}
       aria-label={isRecording ? 'Stop recording' : 'Start recording'}
     >
       <motion.div
-        className={css({
-          backgroundColor: 'record',
-        })}
+        className="bg-red-600"
         animate={{
           width: isRecording ? `${squareSize}px` : `${innerSize}px`,
           height: isRecording ? `${squareSize}px` : `${innerSize}px`,

@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react';
 import { useVoiceRecorder, shouldTranscribeAudio } from '@kaizen/audio-recorder';
-import { css } from '../../styled-system/css';
-import { hstack, vstack } from '../../styled-system/patterns';
 import { transcribeAudio } from '../services/whisper';
 import { RecordButton } from '../ui/RecordButton/RecordButton';
 
@@ -14,27 +12,18 @@ enum ButtonState {
 function TranscriptList({ transcripts }: { transcripts: string[] }): React.ReactElement {
   if (transcripts.length === 0) {
     return (
-      <p className={css({ color: 'gray.600', fontStyle: 'italic', textAlign: 'center' })}>
+      <p className="text-gray-600 italic text-center">
         Your transcripts will appear here...
       </p>
     );
   }
 
   return (
-    <div className={vstack({ gap: 3, alignItems: 'stretch' })}>
+    <div className="flex flex-col gap-3">
       {transcripts.map((transcript, index) => (
         <div
           key={`${index}-${transcript.slice(0, 20)}`}
-          className={css({
-            p: 3,
-            bg: 'gray.800',
-            border: '1px solid',
-            borderColor: 'gray.700',
-            rounded: 'md',
-            fontSize: 'md',
-            lineHeight: '1.6',
-            color: 'gray.200',
-          })}
+          className="p-3 bg-gray-800 border border-gray-700 rounded-md text-base leading-relaxed text-gray-200"
         >
           {transcript}
         </div>
@@ -119,15 +108,9 @@ export function VoiceRecorder(): React.ReactElement {
 
   if (!isSupported) {
     return (
-      <div
-        className={css({
-          minH: '100vh',
-          bg: 'black',
-          color: 'white',
-        })}
-      >
-        <div className={vstack({ gap: 4, p: 8, alignItems: 'center' })}>
-          <p className={css({ color: 'red.400', fontSize: 'lg', textAlign: 'center' })}>
+      <div className="min-h-screen bg-black text-white">
+        <div className="flex flex-col gap-4 p-8 items-center">
+          <p className="text-red-400 text-lg text-center">
             Your browser doesn't support audio recording. Please use a modern browser like Chrome,
             Firefox, or Safari.
           </p>
@@ -137,26 +120,20 @@ export function VoiceRecorder(): React.ReactElement {
   }
 
   return (
-    <div
-      className={css({
-        minH: '100vh',
-        bg: 'black',
-        color: 'white',
-      })}
-    >
-      <div className={vstack({ gap: 6, p: 8, maxW: '4xl', mx: 'auto' })}>
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="flex flex-col gap-6 p-8 max-w-4xl mx-auto">
         {/* Header */}
-        <div className={vstack({ gap: 2, textAlign: 'center' })}>
-          <h1 className={css({ fontSize: '3xl', fontWeight: 'bold', color: 'white' })}>
+        <div className="flex flex-col gap-2 text-center">
+          <h1 className="text-3xl font-bold text-white">
             Voice to Text POC
           </h1>
-          <p className={css({ fontSize: 'md', color: 'gray.400' })}>
+          <p className="text-base text-gray-400">
             Tap to record • Auto-stops after 2.5s of silence
           </p>
         </div>
 
         {/* Microphone Button */}
-        <div className={vstack({ gap: 3, alignItems: 'center', py: 8 })}>
+        <div className="flex flex-col gap-3 items-center py-8">
           <RecordButton
             onClick={handleMicButtonClick}
             isRecording={recordingState === 'recording'}
@@ -165,16 +142,13 @@ export function VoiceRecorder(): React.ReactElement {
 
           {/* Status Text */}
           <p
-            className={css({
-              fontSize: 'lg',
-              fontWeight: 'semibold',
-              color:
-                buttonState === 'ready'
-                  ? 'red.400'
-                  : buttonState === 'recording'
-                    ? 'red.400'
-                    : 'gray.400',
-            })}
+            className={`text-lg font-semibold ${
+              buttonState === 'ready'
+                ? 'text-red-400'
+                : buttonState === 'recording'
+                  ? 'text-red-400'
+                  : 'text-gray-400'
+            }`}
           >
             {isProcessing
               ? 'Processing...'
@@ -185,12 +159,12 @@ export function VoiceRecorder(): React.ReactElement {
 
           {/* Instructions */}
           {recordingState === 'idle' && !isProcessing && (
-            <p className={css({ fontSize: 'sm', color: 'gray.400', textAlign: 'center' })}>
+            <p className="text-sm text-gray-400 text-center">
               Tap microphone to start recording
             </p>
           )}
           {recordingState === 'recording' && (
-            <p className={css({ fontSize: 'sm', color: 'gray.400', textAlign: 'center' })}>
+            <p className="text-sm text-gray-400 text-center">
               Speak now • Tap to stop manually
             </p>
           )}
@@ -198,67 +172,35 @@ export function VoiceRecorder(): React.ReactElement {
 
         {/* Error Display */}
         {currentError && (
-          <div
-            className={css({
-              p: 4,
-              bg: 'red.900',
-              border: '1px solid',
-              borderColor: 'red.700',
-              rounded: 'lg',
-            })}
-          >
-            <p className={css({ color: 'red.300', fontSize: 'sm' })}>⚠️ {currentError}</p>
+          <div className="p-4 bg-red-900 border border-red-700 rounded-lg">
+            <p className="text-red-300 text-sm">⚠️ {currentError}</p>
           </div>
         )}
 
         {/* Transcript Display */}
-        <div className={vstack({ gap: 3, alignItems: 'stretch' })}>
-          <div className={hstack({ justifyContent: 'space-between', alignItems: 'center' })}>
-            <h2 className={css({ fontSize: 'xl', fontWeight: 'bold', color: 'white' })}>
+        <div className="flex flex-col gap-3">
+          <div className="flex justify-between items-center">
+            <h2 className="text-xl font-bold text-white">
               Transcript
             </h2>
             {transcripts.length > 0 && (
               <button
                 type="button"
                 onClick={handleClearTranscripts}
-                className={css({
-                  px: 4,
-                  py: 2,
-                  bg: 'gray.800',
-                  color: 'gray.300',
-                  fontSize: 'sm',
-                  fontWeight: 'medium',
-                  rounded: 'md',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  _hover: {
-                    bg: 'gray.700',
-                  },
-                })}
+                className="px-4 py-2 bg-gray-800 text-gray-300 text-sm font-medium rounded-md cursor-pointer transition-all hover:bg-gray-700"
               >
                 Clear
               </button>
             )}
           </div>
 
-          <div
-            className={css({
-              minH: '64',
-              maxH: '96',
-              overflowY: 'auto',
-              p: 4,
-              bg: 'gray.900',
-              border: '2px solid',
-              borderColor: 'gray.800',
-              rounded: 'lg',
-            })}
-          >
+          <div className="min-h-64 max-h-96 overflow-y-auto p-4 bg-gray-900 border-2 border-gray-800 rounded-lg">
             <TranscriptList transcripts={transcripts} />
           </div>
 
           {/* Transcript Stats */}
           {transcripts.length > 0 && (
-            <div className={hstack({ gap: 4, fontSize: 'sm', color: 'gray.500' })}>
+            <div className="flex gap-4 text-sm text-gray-500">
               <span>
                 {transcripts.length} recording{transcripts.length !== 1 ? 's' : ''}
               </span>

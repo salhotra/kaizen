@@ -36,6 +36,8 @@
     "@storybook/addon-onboarding": "^9.1.13",
     "@storybook/addon-vitest": "^9.1.13",
     "@storybook/react-vite": "^9.1.13",
+    "@tailwindcss/postcss": "^4.1.15",
+    "@tailwindcss/vite": "^4.1.15",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -43,12 +45,13 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
     "jsdom": "^27.0.0",
     "knip": "^5.64.1",
     "storybook": "^9.1.13",
+    "tailwindcss": "^4.1.15",
     "typescript": "~5.9.3",
     "vite": "^7.1.8",
     "vitest": "^3.2.4"
   }
 }
-
