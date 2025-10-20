@@ -1,0 +1,54 @@
+{
+  "name": "@kaizen/web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "panda": "panda codegen",
+    "panda:watch": "panda codegen --watch",
+    "clean": "rm -rf dist .turbo node_modules",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@kaizen/audio-recorder": "workspace:*",
+    "framer-motion": "^12.23.24",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "valtio": "^2.1.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.5",
+    "@chromatic-com/storybook": "^4.1.1",
+    "@pandacss/dev": "^1.4.1",
+    "@storybook/addon-a11y": "^9.1.13",
+    "@storybook/addon-docs": "^9.1.13",
+    "@storybook/addon-links": "^9.1.13",
+    "@storybook/addon-onboarding": "^9.1.13",
+    "@storybook/addon-vitest": "^9.1.13",
+    "@storybook/react-vite": "^9.1.13",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^27.0.0",
+    "knip": "^5.64.1",
+    "storybook": "^9.1.13",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.8",
+    "vitest": "^3.2.4"
+  }
+}
+

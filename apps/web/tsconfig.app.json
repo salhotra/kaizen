@@ -22,7 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "~/styled-system/*": ["./styled-system/*"]
+      "@styles/*": ["./styled-system/*"]
     },
 
     /* Linting */

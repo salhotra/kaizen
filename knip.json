@@ -1,11 +1,39 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
-  "entry": ["src/main.tsx", "src/vite-env.d.ts"],
-  "project": ["src/**/*.{js,jsx,ts,tsx}"],
-  "ignore": ["dist/**", "styled-system/**", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"],
+  "workspaces": {
+    ".": {
+      "entry": ["turbo.json", "commitlint.config.js", "lefthook.yml"],
+      "project": ["**/*.{js,ts}"]
+    },
+    "apps/*": {
+      "entry": [
+        "src/main.tsx",
+        "src/vite-env.d.ts",
+        "vite.config.ts",
+        "vitest.config.ts",
+        "panda.config.ts",
+        ".storybook/main.ts",
+        ".storybook/preview.ts"
+      ],
+      "project": ["src/**/*.{js,jsx,ts,tsx}"],
+      "ignore": [
+        "dist/**",
+        "styled-system/**",
+        "**/*.test.{ts,tsx}",
+        "**/*.spec.{ts,tsx}",
+        "**/*.stories.{ts,tsx}"
+      ],
+      "vite": {
+        "config": ["vite.config.ts"]
+      }
+    },
+    "packages/*": {
+      "entry": ["src/index.ts"],
+      "project": ["src/**/*.{js,jsx,ts,tsx}"],
+      "ignore": ["dist/**", "**/*.test.{ts,tsx}", "**/*.spec.{ts,tsx}"]
+    }
+  },
+  "ignore": ["**/.turbo/**", "**/node_modules/**", "**/dist/**", "**/coverage/**"],
   "ignoreDependencies": [],
-  "ignoreExportsUsedInFile": true,
-  "vite": {
-    "config": ["vite.config.ts"]
-  }
+  "ignoreExportsUsedInFile": true
 }

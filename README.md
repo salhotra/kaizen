@@ -1,6 +1,8 @@
-# Gym Tracking App
+# Kaizen
 
-A modern React application built with cutting-edge tools and best practices (2025).
+A modern fitness tracking application built for fast-paced progress tracking.
+
+**Kaizen** (改善) - Japanese philosophy of continuous improvement. Track your workouts, build momentum, and level up every day.
 
 ## 🚀 Tech Stack
 
@@ -37,6 +39,10 @@ pnpm panda
 
 # Initialize git hooks
 pnpm lefthook install
+
+# Setup environment variables (required for API features)
+cp .env.example .env
+# Edit .env and add your API keys
 ```
 
 ### Editor Setup
@@ -96,7 +102,7 @@ pnpm preview
 Panda CSS provides zero-runtime styling with full TypeScript support:
 
 ```tsx
-import { css } from '~/styled-system/css';
+import { css } from '@/styles/css';
 
 export function Button() {
   return (
@@ -181,50 +187,6 @@ Git hooks are managed by Lefthook:
 - **pre-commit**: Runs Biome lint/format and TypeScript check on staged files
 - **commit-msg**: Validates commit message format
 - **pre-push**: Runs tests and build
-
-## 📁 Project Structure
-
-```
-gym-tracking/
-├── src/
-│   ├── assets/          # Static assets
-│   ├── test/           # Test utilities
-│   ├── App.tsx         # Main app component
-│   ├── main.tsx        # Entry point
-│   └── index.css       # Panda CSS entry
-├── styled-system/      # Generated Panda CSS (git-ignored)
-├── public/             # Public static files
-├── biome.json          # Biome configuration
-├── panda.config.ts     # Panda CSS configuration
-├── vitest.config.ts    # Vitest configuration
-├── vite.config.ts      # Vite configuration
-├── tsconfig.json       # TypeScript configuration
-├── lefthook.yml        # Git hooks configuration
-├── commitlint.config.js # Commit linting configuration
-└── knip.json           # Knip configuration
-```
-
-## 🎯 Features
-
-- ⚡ Lightning-fast dev server with HMR
-- 🎨 Zero-runtime CSS with Panda CSS
-- 📘 Strict TypeScript for type safety
-- 🧪 Fast testing with Vitest
-- 🔧 All-in-one linting/formatting with Biome
-- 🪝 Automated git hooks with Lefthook
-- 📦 Efficient package management with pnpm
-- 🔄 Simple state management with Valtio
-- ✅ Conventional commits enforced
-- 🧹 Automatic unused code detection
-
-## 📚 Learn More
-
-- [Vite Documentation](https://vitejs.dev/)
-- [React Documentation](https://react.dev/)
-- [Panda CSS Documentation](https://panda-css.com/)
-- [Valtio Documentation](https://github.com/pmndrs/valtio)
-- [Biome Documentation](https://biomejs.dev/)
-- [Vitest Documentation](https://vitest.dev/)
 
 ## 📄 License
 
