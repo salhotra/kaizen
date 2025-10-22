@@ -78,7 +78,7 @@ export function useSilenceDetection(
    */
   const startMonitoring = useCallback(
     (stream: MediaStream): void => {
-      if (!isActive || !detectorRef.current) {
+      if (!(isActive && detectorRef.current)) {
         return;
       }
 

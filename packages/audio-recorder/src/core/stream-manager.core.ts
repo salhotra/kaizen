@@ -128,4 +128,3 @@ export class StreamManagerCore {
     this.stopStream();
   }
 }
-

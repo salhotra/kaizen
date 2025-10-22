@@ -23,7 +23,7 @@ export async function analyzeAudioBlob(
     const { duration, averageVolume } = await AudioAnalyzerCore.analyzeBlob(audioBlob);
 
     // Apply BUSINESS RULES - validation logic for your application
-    
+
     // Business rule: Recording must meet minimum duration
     if (duration < minDuration) {
       return {
@@ -73,4 +73,3 @@ export async function shouldTranscribeAudio(
   const result = await analyzeAudioBlob(audioBlob, config);
   return result.isValid;
 }
-

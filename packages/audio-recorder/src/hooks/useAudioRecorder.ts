@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AudioRecorderCore } from '../core';
-import { StreamManagerCore } from '../core';
+import { AudioRecorderCore, StreamManagerCore } from '../core';
 import { RecordingState } from '../types';
 
 export interface UseAudioRecorderReturn {
@@ -67,7 +66,7 @@ export function useAudioRecorder(options: UseAudioRecorderOptions = {}): UseAudi
       return;
     }
 
-    if (!recorderRef.current || !streamManagerRef.current) {
+    if (!(recorderRef.current && streamManagerRef.current)) {
       setError('Recorder not initialized');
       return;
     }

@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["src/**/*", "*.{js,ts,jsx,tsx,json}"],
+    "includes": ["**/*.{js,ts,jsx,tsx,json}"],
     "experimentalScannerIgnores": ["node_modules", "dist", "build", "styled-system", ".pnpm-store"]
   },
   "linter": {
@@ -139,6 +139,7 @@
           }
         },
         "noForEach": "off",
+        "noStaticOnlyClass": "off",
         "noUselessFragments": "error",
         "noUselessLoneBlockStatements": "error",
         "noUselessRename": "error",
@@ -185,9 +186,6 @@
       "security": {
         "noDangerouslySetInnerHtml": "error",
         "noDangerouslySetInnerHtmlWithChildren": "error"
-      },
-      "nursery": {
-        "useExplicitType": "warn"
       }
     }
   },

@@ -92,4 +92,3 @@ export const Medium: Story = {
     size: 'md',
   },
 };
-

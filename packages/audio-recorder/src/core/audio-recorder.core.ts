@@ -115,8 +115,7 @@ export class AudioRecorderCore {
 
     try {
       const mimeType =
-        AudioRecorderCore.getSupportedMimeType(this.options.mimeType) ||
-        DEFAULT_MIME_TYPE;
+        AudioRecorderCore.getSupportedMimeType(this.options.mimeType) || DEFAULT_MIME_TYPE;
 
       if (!mimeType) {
         throw new AudioRecordingError('No supported audio MIME type found', 'NOT_SUPPORTED');
@@ -222,7 +221,10 @@ export class AudioRecorderCore {
    */
   private handleError = (event: Event): void => {
     console.error('MediaRecorder error:', event);
-    const error = new AudioRecordingError('Recording failed. Please try again.', 'RECORDING_FAILED');
+    const error = new AudioRecordingError(
+      'Recording failed. Please try again.',
+      'RECORDING_FAILED'
+    );
     this.setState(RecordingState.Idle);
     this.events.onError?.(error);
   };
@@ -235,4 +237,3 @@ export class AudioRecorderCore {
     this.events.onStateChange?.(newState);
   }
 }
-

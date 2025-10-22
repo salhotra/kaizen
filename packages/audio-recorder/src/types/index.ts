@@ -121,4 +121,3 @@ export class AudioRecordingError extends Error {
     this.name = 'AudioRecordingError';
   }
 }
-

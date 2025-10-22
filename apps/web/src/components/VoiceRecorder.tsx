@@ -1,5 +1,5 @@
+import { shouldTranscribeAudio, useVoiceRecorder } from '@kaizen/audio-recorder';
 import { useCallback, useState } from 'react';
-import { useVoiceRecorder, shouldTranscribeAudio } from '@kaizen/audio-recorder';
 import { transcribeAudio } from '../services/whisper';
 import { RecordButton } from '../ui/RecordButton/RecordButton';
 
@@ -11,11 +11,7 @@ enum ButtonState {
 
 function TranscriptList({ transcripts }: { transcripts: string[] }): React.ReactElement {
   if (transcripts.length === 0) {
-    return (
-      <p className="text-gray-600 italic text-center">
-        Your transcripts will appear here...
-      </p>
-    );
+    return <p className="text-gray-600 italic text-center">Your transcripts will appear here...</p>;
   }
 
   return (
@@ -124,9 +120,7 @@ export function VoiceRecorder(): React.ReactElement {
       <div className="flex flex-col gap-6 p-8 max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col gap-2 text-center">
-          <h1 className="text-3xl font-bold text-white">
-            Voice to Text POC
-          </h1>
+          <h1 className="text-3xl font-bold text-white">Voice to Text POC</h1>
           <p className="text-base text-gray-400">
             Tap to record • Auto-stops after 2.5s of silence
           </p>
@@ -159,14 +153,10 @@ export function VoiceRecorder(): React.ReactElement {
 
           {/* Instructions */}
           {recordingState === 'idle' && !isProcessing && (
-            <p className="text-sm text-gray-400 text-center">
-              Tap microphone to start recording
-            </p>
+            <p className="text-sm text-gray-400 text-center">Tap microphone to start recording</p>
           )}
           {recordingState === 'recording' && (
-            <p className="text-sm text-gray-400 text-center">
-              Speak now • Tap to stop manually
-            </p>
+            <p className="text-sm text-gray-400 text-center">Speak now • Tap to stop manually</p>
           )}
         </div>
 
@@ -180,9 +170,7 @@ export function VoiceRecorder(): React.ReactElement {
         {/* Transcript Display */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-white">
-              Transcript
-            </h2>
+            <h2 className="text-xl font-bold text-white">Transcript</h2>
             {transcripts.length > 0 && (
               <button
                 type="button"

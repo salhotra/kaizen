@@ -159,7 +159,7 @@ export class SilenceDetectorCore {
    * Monitor audio level in a loop using requestAnimationFrame
    */
   private monitorAudioLevel = (dataArray: Uint8Array<ArrayBuffer>): void => {
-    if (!this.isMonitoring || !this.analyser) {
+    if (!(this.isMonitoring && this.analyser)) {
       return;
     }
 
@@ -198,4 +198,3 @@ export class SilenceDetectorCore {
     this.animationFrameId = requestAnimationFrame(() => this.monitorAudioLevel(dataArray));
   };
 }
-

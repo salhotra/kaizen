@@ -5,8 +5,8 @@
  * Supports pitch shifting and gender voice conversion.
  */
 
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const execAsync = promisify(exec);
 
@@ -76,9 +76,13 @@ export class VoiceConversionService {
       f0Method,
     ].join(' ');
 
-    console.log(`🎙️  Converting voice with RVC...`);
+    // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
+    console.log('🎙️  Converting voice with RVC...');
+    // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
     console.log(`   Input: ${inputPath}`);
+    // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
     console.log(`   Output: ${outputPath}`);
+    // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
     console.log(`   Pitch: ${pitch > 0 ? '+' : ''}${pitch} semitones`);
 
     try {
@@ -98,7 +102,9 @@ export class VoiceConversionService {
         console.error('RVC stderr:', stderr);
       }
 
+      // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
       console.log(stdout);
+      // biome-ignore lint/suspicious/noConsole: Using only for debugging temporarily
       console.log('✅ Voice conversion complete');
 
       return outputPath;

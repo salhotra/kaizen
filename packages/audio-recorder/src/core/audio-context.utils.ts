@@ -27,4 +27,3 @@ export function isAudioContextSupported(): boolean {
 
   return 'AudioContext' in window;
 }
-
