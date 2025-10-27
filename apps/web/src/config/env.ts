@@ -11,27 +11,9 @@
  */
 
 interface EnvironmentConfig {
-  openai: {
-    apiKey: string;
-    apiBaseUrl: string;
+  api: {
+    baseUrl: string;
   };
-}
-
-/**
- * Validates that a required environment variable exists and is not empty
- */
-function getRequiredEnvVar(key: string): string {
-  const value = import.meta.env[key];
-
-  if (!value || value.trim() === '') {
-    throw new Error(
-      `Missing required environment variable: ${key}\n` +
-        'Please check your .env file and ensure all required variables are set.\n' +
-        'See .env.example for reference.'
-    );
-  }
-
-  return value;
 }
 
 /**
@@ -48,16 +30,15 @@ function getOptionalEnvVar(key: string, defaultValue: string): string {
  */
 function loadEnvironmentConfig(): EnvironmentConfig {
   return {
-    openai: {
-      apiKey: getRequiredEnvVar('VITE_OPENAI_API_KEY'),
-      apiBaseUrl: getOptionalEnvVar('VITE_OPENAI_API_BASE_URL', 'https://api.openai.com/v1'),
+    api: {
+      baseUrl: getOptionalEnvVar('VITE_API_BASE_URL', 'http://localhost:8081'),
     },
   };
 }
 
 /**
  * Validated environment configuration
- * Access via: env.openai.apiKey
+ * Access via: env.api.baseUrl
  */
 export const env = loadEnvironmentConfig();
 
@@ -66,8 +47,7 @@ export const env = loadEnvironmentConfig();
  */
 declare global {
   interface ImportMetaEnv {
-    readonly VITE_OPENAI_API_KEY: string;
-    readonly VITE_OPENAI_API_BASE_URL?: string;
+    readonly VITE_API_BASE_URL?: string;
     [key: string]: string | undefined;
   }
 

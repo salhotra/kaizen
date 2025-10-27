@@ -35,6 +35,10 @@ const envSchema = z.object({
 
   // Security
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters long for security'),
+
+  // OpenAI
+  OPENAI_API_KEY: z.string().min(1, 'OPENAI_API_KEY is required'),
+  OPENAI_API_BASE_URL: z.url().min(1, 'OPENAI_API_BASE_URL is required'),
 });
 
 /**

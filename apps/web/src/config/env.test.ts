@@ -6,65 +6,42 @@ describe('Environment Configuration', () => {
     vi.resetModules();
   });
 
-  test('should load required environment variables', async () => {
-    // Set test env vars using vi.stubEnv
-    vi.stubEnv('VITE_OPENAI_API_KEY', 'test-api-key-123');
-
-    // Dynamic import to get fresh module with new env
-    const { env } = await import('./env');
-
-    expect(env.openai.apiKey).toBe('test-api-key-123');
-
-    vi.unstubAllEnvs();
-  });
-
   test('should use default API base URL when not provided', async () => {
-    vi.stubEnv('VITE_OPENAI_API_KEY', 'test-api-key-123');
+    // No env vars set
 
     const { env } = await import('./env');
 
-    expect(env.openai.apiBaseUrl).toBe('https://api.openai.com/v1');
+    expect(env.api.baseUrl).toBe('http://localhost:8081');
 
     vi.unstubAllEnvs();
   });
 
   test('should use custom API base URL when provided', async () => {
-    vi.stubEnv('VITE_OPENAI_API_KEY', 'test-api-key-123');
-    vi.stubEnv('VITE_OPENAI_API_BASE_URL', 'https://custom-api.example.com/v1');
+    vi.stubEnv('VITE_API_BASE_URL', 'https://api.kaizen.example.com');
 
     const { env } = await import('./env');
 
-    expect(env.openai.apiBaseUrl).toBe('https://custom-api.example.com/v1');
+    expect(env.api.baseUrl).toBe('https://api.kaizen.example.com');
 
     vi.unstubAllEnvs();
   });
 
-  test('should throw error when required API key is missing', async () => {
-    vi.stubEnv('VITE_OPENAI_API_KEY', '');
+  test('should handle empty API base URL by using default', async () => {
+    vi.stubEnv('VITE_API_BASE_URL', '');
 
-    await expect(async () => {
-      await import('./env');
-    }).rejects.toThrow(/Missing required environment variable: VITE_OPENAI_API_KEY/);
+    const { env } = await import('./env');
 
-    vi.unstubAllEnvs();
-  });
-
-  test('should throw error when API key is whitespace only', async () => {
-    vi.stubEnv('VITE_OPENAI_API_KEY', '   ');
-
-    await expect(async () => {
-      await import('./env');
-    }).rejects.toThrow(/Missing required environment variable: VITE_OPENAI_API_KEY/);
+    expect(env.api.baseUrl).toBe('http://localhost:8081');
 
     vi.unstubAllEnvs();
   });
 
-  test('should throw error when API key is undefined', async () => {
-    vi.stubEnv('VITE_OPENAI_API_KEY', undefined);
+  test('should handle whitespace-only API base URL by using default', async () => {
+    vi.stubEnv('VITE_API_BASE_URL', '   ');
 
-    await expect(async () => {
-      await import('./env');
-    }).rejects.toThrow(/Missing required environment variable: VITE_OPENAI_API_KEY/);
+    const { env } = await import('./env');
+
+    expect(env.api.baseUrl).toBe('http://localhost:8081');
 
     vi.unstubAllEnvs();
   });

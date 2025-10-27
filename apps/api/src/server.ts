@@ -3,6 +3,8 @@ import { type FastifyTRPCPluginOptions, fastifyTRPCPlugin } from '@trpc/server/a
 import Fastify from 'fastify';
 import { env } from './config/env.js';
 import { createContext } from './lib/context.js';
+import { registerHealthRoutes } from './modules/health/index.js';
+import { registerTranscriptionRoutes } from './modules/transcription/index.js';
 import { type AppRouter, appRouter } from './router.js';
 
 const server = Fastify({
@@ -31,10 +33,9 @@ await server.register(fastifyTRPCPlugin, {
   } satisfies FastifyTRPCPluginOptions<AppRouter>['trpcOptions'],
 });
 
-// Health check
-server.get('/health', async () => {
-  return { status: 'ok', timestamp: new Date().toISOString() };
-});
+// Register domain modules
+await registerHealthRoutes(server);
+await registerTranscriptionRoutes(server);
 
 // Start server
 const start = async () => {
@@ -45,6 +46,7 @@ const start = async () => {
     console.log(`
 🚀 Server ready at: http://localhost:${env.PORT}
 📡 tRPC endpoint: http://localhost:${env.PORT}/trpc
+🎙️  Transcription: http://localhost:${env.PORT}/api/transcribe
 🏥 Health check: http://localhost:${env.PORT}/health
     `);
   } catch (err) {

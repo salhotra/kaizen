@@ -1,6 +1,6 @@
 import { shouldTranscribeAudio, useVoiceRecorder } from '@kaizen/audio-recorder';
 import { useCallback, useState } from 'react';
-import { transcribeAudio } from '../services/whisper';
+import { apiClient } from '../services/api';
 import { RecordButton } from '../ui/RecordButton/RecordButton';
 
 enum ButtonState {
@@ -51,7 +51,7 @@ export function VoiceRecorder(): React.ReactElement {
         return;
       }
 
-      const text = await transcribeAudio({ audioBlob });
+      const text = await apiClient.transcribeAudio({ audioBlob, language: 'en' });
 
       if (text.trim()) {
         setTranscripts((prev) => [...prev, text.trim()]);
