@@ -48,15 +48,6 @@ pnpm validate
 pnpm knip
 ```
 
-### Styling
-```bash
-# Generate Panda CSS styled-system (usually auto-generated)
-pnpm panda
-
-# Watch mode for Panda CSS generation
-pnpm panda:watch
-```
-
 ### Package-Specific Commands
 ```bash
 # Run commands in specific packages
@@ -83,7 +74,7 @@ cd apps/web && pnpm test --grep "VoiceRecorder"
 ### Technology Stack
 - **Build Tool**: Vite 7.x with Rolldown
 - **Frontend**: React 19, TypeScript 5.x
-- **Styling**: Panda CSS (zero-runtime CSS-in-JS)
+- **Styling**: Tailwind
 - **State Management**: Valtio (proxy-based)
 - **Code Quality**: Biome (replaces ESLint + Prettier)
 - **Testing**: Vitest + React Testing Library
@@ -93,7 +84,7 @@ cd apps/web && pnpm test --grep "VoiceRecorder"
 
 #### 1. Clean Separation of Concerns
 - **Core Logic**: `packages/audio-recorder` contains pure React hooks and audio processing logic
-- **UI Components**: `apps/web/src/ui/` contains styled components using Panda CSS
+- **UI Components**: `apps/web/src/ui/` contains styled components using Tailwind
 - **Business Logic**: `apps/web/src/components/` contains feature components that combine hooks with UI
 - **Services**: API integrations and external service calls
 
@@ -117,13 +108,6 @@ Uses **Valtio** for reactive state management:
 - Direct mutation with automatic React updates
 - Snapshot-based consumption in components
 
-#### 4. Styling Architecture
-Uses **Panda CSS** for zero-runtime styling:
-- Type-safe CSS-in-JS with full TypeScript support
-- Generated styled-system in `styled-system/` (auto-generated, don't edit)
-- Utility-first approach with design tokens
-- Components use `css()` function for styling
-
 ### Import Patterns
 ```typescript
 // Cross-package imports
@@ -144,7 +128,6 @@ import { VoiceRecorder } from '@/components/VoiceRecorder';
 1. **Hooks** are automatically installed via `pnpm prepare` (Lefthook)
 2. **Pre-commit**: Biome lint/format + TypeScript check
 3. **Pre-push**: Tests + build validation
-4. **Panda CSS** auto-regenerates styled-system on file changes
 
 ### Future Extensibility
 The monorepo is designed for:

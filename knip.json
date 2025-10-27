@@ -11,7 +11,6 @@
         "src/vite-env.d.ts",
         "vite.config.ts",
         "vitest.config.ts",
-        "panda.config.ts",
         ".storybook/main.ts",
         ".storybook/preview.ts"
       ],

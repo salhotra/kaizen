@@ -13,8 +13,6 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "panda": "panda codegen",
-    "panda:watch": "panda codegen --watch",
     "clean": "rm -rf dist .turbo node_modules",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -29,7 +27,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.2.5",
     "@chromatic-com/storybook": "^4.1.1",
-    "@pandacss/dev": "^1.4.1",
     "@storybook/addon-a11y": "^9.1.13",
     "@storybook/addon-docs": "^9.1.13",
     "@storybook/addon-links": "^9.1.13",

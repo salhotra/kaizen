@@ -28,9 +28,6 @@ dist-ssr
 # Testing
 coverage
 
-# Panda CSS generated files
-styled-system
-
 # Build info
 *.tsbuildinfo
 
